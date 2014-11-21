@@ -1,7 +1,6 @@
 .DS_Store
 .sass-cache
 node_modules
-src
 gruntfile.js
 index.html
 *.css.map

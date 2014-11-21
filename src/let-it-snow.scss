@@ -1,0 +1,75 @@
+.let-it-snow {
+	position: relative;
+}
+
+.lis-flake,
+.lis-flake--js {
+	position: absolute;
+	background: #fff;
+	border-radius: 50%;
+	box-shadow: 0 0 4px #fff;
+}
+
+.lis-flake--js {
+	opacity: .2;
+}
+
+.lis-flake {
+	&:nth-child(-n+33) {
+		-webkit-animation: snow1 8s linear infinite;
+	}
+
+	&:nth-child(n+33) {
+		-webkit-animation: snow2 8s 4s linear infinite;
+	}
+
+	&:nth-child(n+66) {
+		-webkit-animation: snow3 8s 6s linear infinite;
+	}
+}
+
+@for $i from 1 through 100 {
+	.lis-flake:nth-child(#{$i}) {
+		left: random(100) * 1%;
+		top: random(100) * 10 - 1000 + px;
+		width: random(6) + px;
+		height: random(6) + px;
+		transform: rotate(random(100) + deg);
+	}
+}
+
+@-webkit-keyframes snow1 {
+	0% {
+		-webkit-transform: translate(-250px, 0);
+		opacity: 1;
+	}
+
+	100% {
+		-webkit-transform: translate(250px, 1500px);
+		opacity: 0;
+	}
+}
+
+@-webkit-keyframes snow2 {
+	0% {
+		-webkit-transform: translate(0, 0);
+		opacity: 1;
+	}
+
+	100% {
+		-webkit-transform: translate(250px, 2500px);
+		opacity: .5;
+	}
+}
+
+@-webkit-keyframes snow3 {
+	0% {
+		-webkit-transform: translate(0, 0);
+		opacity: 1;
+	}
+
+	100% {
+		-webkit-transform: translate(0, 2500px);
+		opacity: .5;
+	}
+}
