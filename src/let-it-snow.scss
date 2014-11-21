@@ -14,6 +14,15 @@
 	opacity: .2;
 }
 
+.lis-flake--stuck {
+	position: absolute;
+	background: #fff;
+	border-radius: 50%;
+	box-shadow: 0 0 4px #fff;
+	opacity: .5;
+	transition: all .3s ease;
+}
+
 .lis-flake {
 	&:nth-child(-n+33) {
 		-webkit-animation: snow1 8s linear infinite;

@@ -38,6 +38,11 @@
             base.animateFlakes($flakes);
         };
 
+        var $snowCollector = base.$el.find('[collectsnow]'),
+            collectorTop = $snowCollector.offset().top,
+            collectorLeft = $snowCollector.offset().left,
+            collectorRight = $(window).width() - (collectorLeft + $snowCollector.outerWidth());
+
         base.animateFlakes = function ($flake) {
             var randomNum = function (min, max) {
                 return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -48,12 +53,14 @@
 
             // go through each snowflake and animate
             $flake.each(function () {
-                var $this = $(this);
+                var $this = $(this),
+                    startTop = (randomNum(0, 100) * 10) - 1000;
+
                 flakeCount++;
 
                 var defaultStyles = {
                     left: randomNum(0, 100) + '%',
-                    top: (randomNum(0, 100) * 10) - 1000 + 'px',
+                    top: startTop + 'px',
                     width: randomNum(0, 5) + 'px',
                     height: randomNum(0, 5) + 'px',
                     transform: 'rotate' + (randomNum(0, 100) + 'deg')
@@ -63,9 +70,30 @@
 
                 function animation (speed) {
                     $this.animate({
-                        marginTop: '2500px',
-                        opacity: 0
-                    }, speed);
+                        marginTop: '2500px'
+                    }, {
+                        duration: speed,
+                        step: function (param) {
+                            var curTop = Math.round(param),
+                                rightOffset = $(window).width() - ($this.offset().left + $this.outerWidth());
+
+                            if (
+                                (startTop + curTop) >= (collectorTop - 10) &&
+                                (startTop + curTop) <= (collectorTop + 10) &&
+                                ($this.css('left').replace(/[^-\d\.]/g, '') >= collectorLeft) &&
+                                (rightOffset >= collectorRight)) {
+
+                                $this
+                                    .stop()
+                                    .attr('class', 'lis-flake--stuck')
+                                    .css({
+                                        marginTop: collectorTop + 'px',
+                                        width: '3px',
+                                        height: '2px'
+                                    });
+                            }
+                        }
+                    });
                 }
 
                 if (flakeCount <= 16) {
@@ -80,26 +108,6 @@
                     }, 6000);
                 }
             });
-
-            // watch
-            base.watchFlakes();
-        };
-
-        base.watchFlakes = function () {
-            // grab which elements to collect snow
-            var $snowCollector = base.$el.find('[collectsnow]'),
-                $flake = $('.' + base.options.snowClass);
-
-            $snowCollector.each(function () {
-                var $this = $(this),
-                    offset = $this.offset(),
-                    top = offset.top,
-                    left = offset.left;
-            });
-
-            // when $flake reaches $snowCollector
-            // set -webkit-animation-play-state: paused; on that element
-            // have to get current translate value from animation
         };
         
         // initialize
