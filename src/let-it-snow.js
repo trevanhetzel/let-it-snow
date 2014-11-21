@@ -42,10 +42,12 @@
             base.animateFlakes($flakes);
         };
 
-        var $snowCollector = base.$el.find('[collectsnow]'),
-            collectorTop = $snowCollector.offset().top,
-            collectorLeft = $snowCollector.offset().left,
-            collectorRight = $(window).width() - (collectorLeft + $snowCollector.outerWidth());
+        var $snowCollector = base.$el.find('[collectsnow]');
+        if ($snowCollector.length) {
+            var collectorTop = $snowCollector.offset().top,
+                collectorLeft = $snowCollector.offset().left,
+                collectorRight = $(window).width() - (collectorLeft + $snowCollector.outerWidth());
+        }
 
         base.animateFlakes = function ($flake) {
             var randomNum = function (min, max) {
