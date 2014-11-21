@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Let it snow</title>
+
+        <link rel="stylesheet" href="let-it-snow.css">
+
+        <style>
+        	* {
+        		box-sizing: border-box;
+        	}
+
+        	html,body {
+        		width: 100%;
+        		height: 100%;
+        		margin: 0;
+        		padding: 0;
+        	}
+
+        	.let-it-snow {
+        		width: 100%;
+        		height: 100%;
+        		float: left;
+        		background: #001e28;
+        	}
+
+        	.element {
+        		position: relative;
+        		z-index: 1;
+        		margin: 400px auto 0;
+        		height: 100px;
+        		border-radius: 10px;
+        		width: 600px;
+        		background: #38b6cd;
+        	}
+        </style>
+    </head>
+
+	<body>
+		<div class="let-it-snow">
+			<div class="element" collectsnow></div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="let-it-snow.min.js"></script>
+		<script>
+        $.letItSnow('.let-it-snow', {
+            stickyFlakes: 'lis-flake--js',
+            makeFlakes: true,
+            sticky: true
+        });</script>
+    </body>
+</html>

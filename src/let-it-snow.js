@@ -10,17 +10,21 @@
         base.init = function () {
             base.options = $.extend({},$.letItSnow.defaultOptions, options);
 
-            // make the main snowflakes to be styled w/ CSS
-            for (var i = 0; i < 100; i++) {
-                base.$el.prepend('<span class="lis-flake"></span>');
+            if (base.options.makeFlakes == true) {
+                // make the main snowflakes to be styled w/ CSS
+                for (var i = 0; i < 100; i++) {
+                    base.$el.prepend('<span class="lis-flake"></span>');
+                }
             }
 
-            // make the background snowflakes to be collected by elements w/ JS
-            base.makeFlakes(); // first batch
+            if (base.options.sticky == true) {
+                // make the background snowflakes to be collected by elements w/ JS
+                base.makeFlakes(); // first batch
 
-            setInterval(function () {
-                base.makeFlakes(); // repeating batches
-            }, 7000);
+                setInterval(function () {
+                    base.makeFlakes(); // repeating batches
+                }, 7000);
+            }
         };
         
         base.makeFlakes = function () {
@@ -28,11 +32,11 @@
 
             // create the snowflakes
             for (var i = 0; i < 50; i++) {
-                base.$el.append('<span class="' + base.options.snowClass + '"></span>');
+                base.$el.append('<span class="' + base.options.stickyFlakes + '"></span>');
             }
 
             // grab all the snowflakes
-            var $flakes = $('.' + base.options.snowClass);
+            var $flakes = $('.' + base.options.stickyFlakes);
 
             // animate the snowflakes
             base.animateFlakes($flakes);
@@ -74,23 +78,25 @@
                     }, {
                         duration: speed,
                         step: function (param) {
-                            var curTop = Math.round(param),
-                                rightOffset = $(window).width() - ($this.offset().left + $this.outerWidth());
+                            if ($snowCollector.length) {
+                                var curTop = Math.round(param),
+                                    rightOffset = $(window).width() - ($this.offset().left + $this.outerWidth());
 
-                            if (
-                                (startTop + curTop) >= (collectorTop - 10) &&
-                                (startTop + curTop) <= (collectorTop + 10) &&
-                                ($this.css('left').replace(/[^-\d\.]/g, '') >= collectorLeft) &&
-                                (rightOffset >= collectorRight)) {
+                                if (
+                                    (startTop + curTop) >= (collectorTop - 10) &&
+                                    (startTop + curTop) <= (collectorTop + 10) &&
+                                    ($this.css('left').replace(/[^-\d\.]/g, '') >= collectorLeft) &&
+                                    (rightOffset >= collectorRight)) {
 
-                                $this
-                                .stop()
-                                .attr('class', 'lis-flake--stuck')
-                                .css({
-                                    width: randomNum(12, 20) + 'px',
-                                    height: '4px',
-                                    top: startTop + 6 + 'px'
-                                });
+                                    $this
+                                    .stop()
+                                    .attr('class', 'lis-flake--stuck')
+                                    .css({
+                                        width: '3px',
+                                        height: '3px',
+                                        top: startTop + 6 + 'px'
+                                    });
+                                }
                             }
                         }
                     });
@@ -117,7 +123,9 @@
     };
     
     $.letItSnow.defaultOptions = {
-        snowClass: 'lis-flake--js'
+        stickyFlakes: 'lis-flake--js',
+        makeFlakes: true,
+        sticky: true
     };
     
     $.fn.letItSnow = function (options) {

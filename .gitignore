@@ -2,6 +2,5 @@
 .sass-cache
 node_modules
 gruntfile.js
-index.html
 *.css.map
 package.json
