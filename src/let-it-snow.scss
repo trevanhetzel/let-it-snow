@@ -17,9 +17,10 @@
 .lis-flake--stuck {
 	position: absolute;
 	background: #fff;
-	border-radius: 50%;
+	border-radius: 8px 8px 0 0;
+	background: radial-gradient(ellipse at center,  rgba(255,255,255,1) 2%,rgba(255,255,255,1) 8%,rgba(255,255,255,0) 100%); /* W3C */
 	box-shadow: 0 0 4px #fff;
-	opacity: .5;
+	opacity: .3;
 	transition: all .3s ease;
 }
 

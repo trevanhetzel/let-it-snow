@@ -84,28 +84,30 @@
                                 (rightOffset >= collectorRight)) {
 
                                 $this
-                                    .stop()
-                                    .attr('class', 'lis-flake--stuck')
-                                    .css({
-                                        marginTop: collectorTop + 'px',
-                                        width: '3px',
-                                        height: '2px'
-                                    });
+                                .stop()
+                                .attr('class', 'lis-flake--stuck')
+                                .css({
+                                    width: randomNum(12, 20) + 'px',
+                                    height: '4px',
+                                    top: startTop + 6 + 'px'
+                                });
                             }
                         }
                     });
                 }
 
-                if (flakeCount <= 16) {
-                    animation(10000);
-                } else if (flakeCount > 17 && flakeCount <= 33) {
-                    setTimeout(function () {
-                        animation(8000);
-                    }, 4000);
-                } else if (flakeCount > 34 && flakeCount < 50) {
-                    setTimeout(function () {
-                        animation(8000);
-                    }, 6000);
+                if (!$this.hasClass('lis-flake--stuck')) {
+                    if (flakeCount <= 16) {
+                        animation(10000);
+                    } else if (flakeCount > 17 && flakeCount <= 33) {
+                        setTimeout(function () {
+                            animation(8000);
+                        }, 4000);
+                    } else if (flakeCount > 34 && flakeCount < 50) {
+                        setTimeout(function () {
+                            animation(8000);
+                        }, 6000);
+                    }
                 }
             });
         };
