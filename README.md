@@ -3,7 +3,7 @@ let-it-snow
 
 ### [View demo](http://trevanhetzel.github.io/let-it-snow)
 
-This is a little experiment on creating CSS snowflakes that "stick" to elements.
+This is a little experiment on creating CSS snowflakes that stick/collect to elements. The collection of snowflakes is not the most realistic it could be but, hey, the logic is there!
 
 *Disclaimer*: the JavaScript is really just an experiment and I can't vouch for the performance of it. While it doesn't noticeably slow down a page, there's a little callback hell that could definitely be cleaned up. This is only my attempt at the getting the logic down :)
 
