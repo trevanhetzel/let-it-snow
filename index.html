@@ -42,19 +42,13 @@
                 font-size: 1.5em;
                 line-height: 3.5em;
                 font-weight: bold;
-                text-decoration: none;
-                border-bottom: 4px solid #158296;
         	}
-
-            .button:hover {
-                background: #42c0d7;
-            }
         </style>
     </head>
 
 	<body>
 		<div class="let-it-snow">
-			<a href="#" class="button" collectsnow>Collect snow on me!</a>
+			<div class="button" collectsnow>Collect snow on me!</div>
 		</div>
 
 		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -63,15 +57,7 @@
         $.letItSnow('.let-it-snow', {
             stickyFlakes: 'lis-flake--js',
             makeFlakes: true,
-            sticky: false
-        });
-
-        $('.button').on('click', function () {
-            $.letItSnow('.let-it-snow', {
-                stickyFlakes: 'lis-flake--js',
-                makeFlakes: true,
-                sticky: true
-            });
+            sticky: true
         });
         </script>
     </body>
