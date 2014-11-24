@@ -1,0 +1,13 @@
+{
+    "name": "let-it-snow",
+    "title": "Let it snow",
+    "version": "0.1.0",
+    "description": "Make it snow!",
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-autoprefixer": "~0.7.3",
+        "grunt-contrib-sass": "~0.7.3",
+        "grunt-contrib-watch": "~0.5.1",
+        "grunt-contrib-uglify": "~0.6.0"
+    }
+}

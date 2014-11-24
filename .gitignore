@@ -1,6 +1,4 @@
 .DS_Store
 .sass-cache
 node_modules
-gruntfile.js
 *.css.map
-package.json
