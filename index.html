@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Let it snow</title>
+
+        <link rel="stylesheet" href="http://rawgit.com/trevanhetzel/let-it-snow/master/let-it-snow.css">
+
+        <style><!-- Demo Styles -->
+        	* {
+        		box-sizing: border-box;
+        	}
+
+        	html,body {
+        		width: 100%;
+        		height: 100%;
+        		margin: 0;
+                overflow: hidden;
+        		padding: 0;
+        	}
+
+        	.let-it-snow {
+        		width: 100%;
+        		height: 100%;
+        		float: left;
+        		background: #001e28;
+        	}
+
+        	.button {
+                display: block;
+        		position: relative;
+        		z-index: 1;
+        		margin: 400px auto 0;
+        		border-radius: 10px;
+        		width: 480px;
+        		background: #38b6cd;
+                color: #fff;
+                text-align: center;
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 1.5em;
+                line-height: 3.5em;
+                font-weight: bold;
+        	}
+        </style>
+    </head>
+
+	<body>
+		<div class="let-it-snow">
+			<div class="button" collectsnow>Collect snow on me!</div>
+		</div>
+
+		<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="http://rawgit.com/trevanhetzel/let-it-snow/master/let-it-snow.min.js"></script>
+		<script>
+        $.letItSnow('.let-it-snow', {
+            stickyFlakes: 'lis-flake--js',
+            makeFlakes: true,
+            sticky: false
+        });
+        </script>
+    </body>
+</html>
